@@ -1,0 +1,1 @@
+INSERT INTO llx_users_member (firstname, lastname, mail, birthday) VALUES (:firstname, :lastname, :mail, :birthday);
