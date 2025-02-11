@@ -8,21 +8,63 @@ $dbuser = 'dolibarruser';
 $dbpassword = 'dolibarr';
 global $external_db;
 global $db;
-
-function createUser($firstname, $lastname, $mail, $birthday) {
-    global $external_db, $action, $sql_add_member;
-    if (empty($firstname) || empty($lastname) || empty($mail) || empty($birthday)) {
-        setEventMessage("Error: All fields are required", 'errors');
-        return;
-    }
-    
+function createUser($sexe, $nom, $prenom, $nompatronymique, $Adresse, $Adresse2, $CP, $ville, $tel, $tel2, $portable, $Mail, $naissance, $CPnaissance, $ddn, $annee, $Actif, $Pupitre, $TailleVeste, $TailleChemise, $TaillePantalon, $TailleGilet, $Casquette, $Profession, $Musicien, $Convocation_Papier, $Convocation_Mail, $Commentaires, $Clairon, $Tambour, $Mail_valide, $medaille, $F1_envoi_taches, $fic) {
+    global $external_db, $action;
+    $titre = $sexe == 'F' ? 'Madame' : 'Monsieur';
+    $np = "$nom $prenom";
     $stmt = $external_db->prepare(file_get_contents(__DIR__ . '/../../sql/add_member.sql'));
+
+    // Replace empty parameters with null
+    $params = [
+        'sexe' => $sexe,
+        'titre' => $titre,
+        'np' => $np,
+        'nom' => $nom,
+        'prenom' => $prenom,
+        'nompatronymique' => $nompatronymique,
+        'Adresse' => $Adresse,
+        'Adresse2' => $Adresse2,
+        'CP' => $CP,
+        'ville' => $ville,
+        'tel' => $tel,
+        'tel2' => $tel2,
+        'portable' => $portable,
+        'Mail' => $Mail,
+        'naissance' => $naissance,
+        'CPnaissance' => $CPnaissance,
+        'ddn' => $ddn,
+        'annee' => $annee,
+        'Actif' => $Actif,
+        'Pupitre' => $Pupitre,
+        'TailleVeste' => $TailleVeste,
+        'TailleChemise' => $TailleChemise,
+        'TaillePantalon' => $TaillePantalon,
+        'TailleGilet' => $TailleGilet,
+        'Casquette' => $Casquette,
+        'Profession' => $Profession,
+        'Musicien' => $Musicien,
+        'Convocation_Papier' => $Convocation_Papier,
+        'Convocation_Mail' => $Convocation_Mail,
+        'Commentaires' => $Commentaires,
+        'Clairon' => $Clairon,
+        'Tambour' => $Tambour,
+        'Mail_valide' => $Mail_valide,
+        'medaille' => $medaille,
+        'F1_envoi_taches' => $F1_envoi_taches,
+        'fic' => $fic
+    ];
+
+    foreach ($params as $key => $value) {
+        if (empty($value)) {
+            $params[$key] = null;
+        }
+    }
+
     if ($stmt) {
-        $stmt->bindValue(':firstname', $firstname, PDO::PARAM_STR);
-        $stmt->bindValue(':lastname', $lastname, PDO::PARAM_STR);
-        $stmt->bindValue(':mail', $mail, PDO::PARAM_STR);
-        $stmt->bindValue(':birthday', $birthday, PDO::PARAM_STR);
-        
+        foreach ($params as $key => $value) {
+            $paramType = is_null($value) ? PDO::PARAM_NULL : PDO::PARAM_STR;
+            $stmt->bindValue(":$key", $value, $paramType);
+        }
         if ($stmt->execute()) {
             setEventMessage("User successfully created");
         } else {
@@ -37,25 +79,73 @@ function createUser($firstname, $lastname, $mail, $birthday) {
 }
 
 
+function editUser($sexe, $nom, $prenom, $nompatronymique, $Adresse, $Adresse2, $CP, $ville, $tel, $tel2, $portable, $Mail, $naissance, $CPnaissance, $ddn, $annee, $Actif, $Pupitre, $TailleVeste, $TailleChemise, $TaillePantalon, $TailleGilet, $Casquette, $Profession, $Musicien, $Convocation_Papier, $Convocation_Mail, $Commentaires, $Clairon, $Tambour, $Mail_valide, $medaille, $F1_envoi_taches, $fic, $rowid) {
+    global $external_db, $action;
 
-
-function editUser($rowid, $firstname, $lastname, $mail, $birthday) {
-    global $external_db;
-    global $action, $sql_edit_member;
-  
-
-    if (empty($firstname) || empty($lastname) || empty($mail) || empty($birthday) || empty($rowid)) {
-        setEventMessage("Error: All fields are required", 'errors');
+    if (empty($rowid)) {
+        setEventMessage("Error: User ID is required", 'errors');
         return;
     }
 
+    $titre = $sexe == 'F' ? 'Madame' : 'Monsieur';
+    $np = "$nom $prenom";
     $stmt = $external_db->prepare(file_get_contents(__DIR__ . '/../../sql/edit_member.sql'));
+
+    // Replace empty parameters with null
+    $params = [
+        'sexe' => $sexe,
+        'titre' => $titre,
+        'np' => $np,
+        'nom' => $nom,
+        'prenom' => $prenom,
+        'nompatronymique' => $nompatronymique,
+        'Adresse' => $Adresse,
+        'Adresse2' => $Adresse2,
+        'CP' => $CP,
+        'ville' => $ville,
+        'tel' => $tel,
+        'tel2' => $tel2,
+        'portable' => $portable,
+        'Mail' => $Mail,
+        'naissance' => $naissance,
+        'CPnaissance' => $CPnaissance,
+        'ddn' => $ddn,
+        'annee' => $annee,
+        'Actif' => $Actif,
+        'Pupitre' => $Pupitre,
+        'TailleVeste' => $TailleVeste,
+        'TailleChemise' => $TailleChemise,
+        'TaillePantalon' => $TaillePantalon,
+        'TailleGilet' => $TailleGilet,
+        'Casquette' => $Casquette,
+        'Profession' => $Profession,
+        'Musicien' => $Musicien,
+        'Convocation_Papier' => $Convocation_Papier,
+        'Convocation_Mail' => $Convocation_Mail,
+        'Commentaires' => $Commentaires,
+        'Clairon' => $Clairon,
+        'Tambour' => $Tambour,
+        'Mail_valide' => $Mail_valide,
+        'medaille' => $medaille,
+        'F1_envoi_taches' => $F1_envoi_taches,
+        'fic' => $fic,
+        'rowid' => $rowid
+    ];
+
+    foreach ($params as $key => $value) {
+        if (empty($value)) {
+            $params[$key] = null;
+        }
+    }
+
     if ($stmt) {
-        $stmt->bindValue(':firstname', $firstname, PDO::PARAM_STR);
-        $stmt->bindValue(':lastname', $lastname, PDO::PARAM_STR);
-        $stmt->bindValue(':mail', $mail, PDO::PARAM_STR);
-        $stmt->bindValue(':birthday', $birthday, PDO::PARAM_STR);
-        $stmt->bindValue(':rowid', $rowid, PDO::PARAM_INT);
+        foreach ($params as $key => $value) {
+            $paramType = is_null($value) ? PDO::PARAM_NULL : PDO::PARAM_STR;
+            if ($key == 'rowid') {
+                $paramType = PDO::PARAM_INT;
+            }
+            $stmt->bindValue(":$key", $value, $paramType);
+        }
         if ($stmt->execute()) {
             setEventMessage("User successfully edited");
         } else {
@@ -65,6 +155,7 @@ function editUser($rowid, $firstname, $lastname, $mail, $birthday) {
     } else {
         setEventMessage("Error: Unable to prepare the SQL statement", 'errors');
     }
+
     $action = '';
 }
 
@@ -95,6 +186,29 @@ function showUser() {
     }
 }
 
+function deleteUser($rowid) {
+    global $external_db, $action;
+
+    if (empty($rowid)) {
+        setEventMessage("Error: User ID is required", 'errors');
+        return;
+    }
+
+    try {
+        $stmt = $external_db->prepare(file_get_contents(__DIR__ . '/../../sql/delete_member.sql'));
+        $stmt->bindValue(':rowid', $rowid, PDO::PARAM_INT);
+
+        if ($stmt->execute()) {
+            setEventMessage("User successfully deleted");
+        } else {
+            setEventMessage("Error: ".$stmt->error, 'errors');
+        }
+    } catch (PDOException $e) {
+        setEventMessage("Database error: ".htmlspecialchars($e->getMessage()), 'errors');
+    } finally {
+        $action = '';
+    }
+}
 
 
 ?>

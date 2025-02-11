@@ -1,1 +1,1 @@
-SELECT rowid, firstname, lastname, mail, birthday FROM llx_users_member;
+SELECT * FROM liste_membre;

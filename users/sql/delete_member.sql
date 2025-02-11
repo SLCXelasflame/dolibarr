@@ -1,0 +1,1 @@
+DELETE FROM `liste_membre` WHERE ID = :rowid;

@@ -25,33 +25,58 @@ $res = actions($perms);
 $name = $res[0];
 $tab = $res[1];
 
-
-
-
-
 llxHeader("", $langs->trans("UsersArea"), '', '', 0, 0, '', '', '', 'mod-users page-index');
 print load_fiche_titre($langs->trans("UsersArea"), '', 'users.png@users');
 
 print '<div class="fichecenter"><div class="fichethirdleft">';
 
-
+$token = newToken();
 // Form for creating a user
 if($perms !=null && isset($perms->admin) && $perms->admin == 1){
 print '<form method="POST" action="'.$_SERVER['PHP_SELF'].'">';
 print '<table class="border" width="100%">';
-print '<tr><td class="flat">'.$langs->trans("Firstname").'</td><td><input type="text" name="firstname" value=""></td></tr>';
-print '<tr><td class="flat">'.$langs->trans("Lastname").'</td><td><input type="text" name="lastname" value=""></td></tr>';
-print '<tr><td class="flat">'.$langs->trans("Email").'</td><td><input type="email" name="mail" value=""></td></tr>';
-print '<tr><td class="flat">'.$langs->trans("Birthday").'</td><td><input type="date" name="birthday" value=""></td></tr>';
 print '<tr><td colspan="2"><input type="hidden" name="action" value="create"></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Sexe").'</td><td><select name="sexe"><option value="M">M</option><option value="F">F</option></select></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Nom").'</td><td><input type="text" name="nom" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Prénom").'</td><td><input type="text" name="prenom" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("nompatronymique").'</td><td><input type="text" name="nompatronymique" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Adresse").'</td><td><input type="text" name="adresse" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Adresse2").'</td><td><input type="text" name="adresse2" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("CP").'</td><td><input type="text" name="cp" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Mail").'</td><td><input type="email" name="mail" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Ville").'</td><td><input type="text" name="ville" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Tel").'</td><td><input type="text" name="tel" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Tel2").'</td><td><input type="text" name="tel2" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Portable").'</td><td><input type="text" name="portable" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Naissance").'</td><td><input type="text" name="naissance" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("CPNaissance").'</td><td><input type="text" name="cpnaissance" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("DDN").'</td><td><input type="date" name="ddn" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Annee").'</td><td><input type="text" name="annee" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Actif").'</td><td><input type="checkbox" name="actif" value="1"></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Pupitre").'</td><td><input type="text" name="pupitre" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("TailleVeste").'</td><td><input type="text" name="tailleveste" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("TailleChemise").'</td><td><input type="text" name="taillechemise" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("TaillePantalon").'</td><td><input type="text" name="taillepantalon" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("TailleGilet").'</td><td><input type="text" name="taillegilet" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Casquette").'</td><td><input type="text" name="casquette" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Profession").'</td><td><input type="text" name="profession" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Musicien").'</td><td><input type="checkbox" name="musicien" value="1"></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("ConvocationPapier").'</td><td><input type="checkbox" name="convocation_papier" value="1"></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("ConvocationMail").'</td><td><input type="checkbox" name="convocation_mail" value="1"></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Commentaires").'</td><td><input type="text" name="commentaires" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Clairon").'</td><td><input type="checkbox" name="clairon" value="1"></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Tambour").'</td><td><input type="checkbox" name="tambour" value="1"></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("MailValide").'</td><td><input type="checkbox" name="mail_valide" value="1"></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Medaille").'</td><td><input type="text" name="medaille" value=""></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("F1EnvoiTaches").'</td><td><input type="checkbox" name="f1_envoi_taches" value="1"></td></tr>';
+print '<tr><td class="flat">'.$langs->trans("Fic").'</td><td><input type="text" name="fic" value=""></td></tr>';
+print '<input type="hidden" name="token" value="'.$token.'">';
 print '</table>';
 print '<div class="center">';
 print '<input type="submit" class="button" value="'.$langs->trans("CreateUser").'">';
 print '</div>';
 print '</form>';
 }
-
-
 
 print '<br>';
 print '<br>';
@@ -60,21 +85,67 @@ if($perms !=null && isset($perms->bureau) && $perms->bureau == 1){
     print '<form id="editForm" method="POST" action="'.$_SERVER['PHP_SELF'].'">';
     print '<table class="border" width="100%">';
     print '<input type="hidden" name="rowid" value="">';
-    print '<tr><td class="flat">'.$langs->trans("Firstname").'</td><td><input type="text" name="firstname" value=""></td></tr><br>';
-    print '<tr><td class="flat">'.$langs->trans("Lastname").'</td><td><input type="text" name="lastname" value=""></td></tr><br>';
-    print '<tr><td class="flat">'.$langs->trans("Email").'</td><td><input type="email" name="mail" value=""></td></tr><br>';
-    print '<tr><td class="flat">'.$langs->trans("Birthday").'</td><td><input type="date" name="birthday" value=""></td></tr><br>';
+    print '<tr><td class="flat">'.$langs->trans("Sexe").'</td><td><select name="sexe"><option value="M">M</option><option value="F">F</option></select></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Nom").'</td><td><input type="text" name="nom" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Prénom").'</td><td><input type="text" name="prenom" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("nompatronymique").'</td><td><input type="text" name="nompatronymique" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Adresse").'</td><td><input type="text" name="adresse" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Adresse2").'</td><td><input type="text" name="adresse2" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("CP").'</td><td><input type="text" name="cp" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Mail").'</td><td><input type="email" name="mail" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Ville").'</td><td><input type="text" name="ville" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Tel").'</td><td><input type="text" name="tel" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Tel2").'</td><td><input type="text" name="tel2" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Portable").'</td><td><input type="text" name="portable" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Naissance").'</td><td><input type="date" name="naissance" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("CPNaissance").'</td><td><input type="text" name="cpnaissance" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("DDN").'</td><td><input type="date" name="ddn" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Annee").'</td><td><input type="text" name="annee" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Actif").'</td><td><input type="checkbox" name="actif" value="1"></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Pupitre").'</td><td><input type="text" name="pupitre" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("TailleVeste").'</td><td><input type="text" name="tailleveste" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("TailleChemise").'</td><td><input type="text" name="taillechemise" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("TaillePantalon").'</td><td><input type="text" name="taillepantalon" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("TailleGilet").'</td><td><input type="text" name="taillegilet" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Casquette").'</td><td><input type="text" name="casquette" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Profession").'</td><td><input type="text" name="profession" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Musicien").'</td><td><input type="checkbox" name="musicien" value="1"></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("ConvocationPapier").'</td><td><input type="checkbox" name="convocation_papier" value="1"></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("ConvocationMail").'</td><td><input type="checkbox" name="convocation_mail" value="1"></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Commentaires").'</td><td><input type="text" name="commentaires" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Clairon").'</td><td><input type="checkbox" name="clairon" value="1"></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Tambour").'</td><td><input type="checkbox" name="tambour" value="1"></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("MailValide").'</td><td><input type="checkbox" name="mail_valide" value="1"></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Medaille").'</td><td><input type="text" name="medaille" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("F1EnvoiTaches").'</td><td><input type="checkbox" name="f1_envoi_taches" value="1"></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Fic").'</td><td><input type="text" name="fic" value=""></td></tr>';
     print '<tr><td colspan="2"><input type="hidden" name="action" value="edit"></td></tr>';
     print '<tr><td colspan="2"><input type="hidden" name="id" value=""></td></tr>';
+    print '<input type="hidden" name="token" value="'.$token.'">';
     print '</table>';
     print '<div class="center">';
     print '<input type="submit" class="button" value="'.$langs->trans("EditUser").'">';
     print '</div>';
     print '</form>';
-    }
+}
 
-    print '<br>';
-    print '<br>';
+print '<br>';
+print '<br>';
+print '<br>';
+if ($perms != null && isset($perms->admin) && $perms->admin == 1) {
+    print '<form id="deleteForm" method="POST" action="'.$_SERVER['PHP_SELF'].'">';
+    print '<table class="border" width="100%">';
+    print '<tr><td class="flat">'.$langs->trans("Nom").'</td><td><input type="text" name="nom" value=""></td></tr>';
+    print '<tr><td class="flat">'.$langs->trans("Prénom").'</td><td><input type="text" name="prenom" value=""></td></tr>';
+    print '</table>';
+    print '<input type="hidden" name="action" value="delete">';
+    print '<input type="hidden" name="id" value="">';
+    print '<div class="center">';
+    print '<input type="submit" class="button" value="'.$langs->trans("DeleteUser").'">';
+    print '</div>';
+    print '<input type="hidden" name="token" value="'.$token.'">';
+    print '</form>';
+}
 print '<br>';
 print $tab;
 print '<br>';
@@ -84,9 +155,8 @@ print '<form method="POST" action="'.$_SERVER['PHP_SELF'].'">';
 print '<input type="hidden" name="name" value="' . $name.'">';
 print '<input type="hidden" name="action" value="show">';
 print '<div class="center"><input type="submit" class="button" value="'.$name.'"></div>';
+print '<input type="hidden" name="token" value="'.$token.'">';
 print '</form>';
-
-
 
 llxFooter();
 ?>
