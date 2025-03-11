@@ -1,3 +1,3 @@
 UPDATE liste_membre
 SET sexe=:sexe, titre=:titre, np=:np, nom=:nom, prénom=:prenom, nompatronymique=:nompatronymique, Adresse=:Adresse, Adresse2=:Adresse2, CP=:CP, ville=:ville, tél=:tel, tél2=:tel2, portable=:portable, Mail=:Mail, naissance=:naissance, CPnaissance=:CPnaissance, ddn=:ddn, année=:annee, Actif=:Actif, Pupitre=:Pupitre, TailleVeste=:TailleVeste, TailleChemise=:TailleChemise, TaillePantalon=:TaillePantalon, TailleGilet=:TailleGilet, Casquette=:Casquette, Profession=:Profession, Musicien=:Musicien, Convocation_Papier=:Convocation_Papier, Convocation_Mail=:Convocation_Mail, Commentaires=:Commentaires, Clairon=:Clairon, Tambour=:Tambour, Mail_valide=:Mail_valide, médaille=:medaille, F1_envoi_tâches=:F1_envoi_taches, fic=:fic 
-WHERE ID=:ID;
+WHERE ID=:rowid;

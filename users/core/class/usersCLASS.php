@@ -2,43 +2,47 @@
 require_once __DIR__ .'/../../../../main.inc.php';
 
 require_once __DIR__ . '/../lib/usersLIB.php';
-
+function remove_accents($string) {
+    $utf8_string = html_entity_decode($string, ENT_COMPAT, 'UTF-8');
+    //$utf8_string = iconv('UTF-8', 'ASCII//TRANSLIT', $utf8_string);
+    return $utf8_string;
+}
 function actions($perms){
     global $langs;
-    $sexe = dol_escape_htmltag(GETPOST("sexe", "alpha"));
-    $nom = dol_escape_htmltag(GETPOST("nom", "alpha"));
-    $prenom = dol_escape_htmltag(GETPOST("prenom", "alpha"));
-    $nompatronymique = dol_escape_htmltag(GETPOST("nompatronymique", "alpha"));
-    $Adresse = dol_escape_htmltag(GETPOST("Adresse", "alpha"));
-    $Adresse2 = dol_escape_htmltag(GETPOST("Adresse2", "alpha"));
-    $CP = dol_escape_htmltag(GETPOST("CP", "alpha"));
-    $ville = dol_escape_htmltag(GETPOST("ville", "alpha"));
-    $tel = dol_escape_htmltag(GETPOST("tel", "alpha"));
-    $tel2 = dol_escape_htmltag(GETPOST("tel2", "alpha"));
-    $portable = dol_escape_htmltag(GETPOST("portable", "alpha"));
+    $sexe = remove_accents(dol_escape_htmltag(GETPOST("sexe", "alpha")));
+    $nom = remove_accents(dol_escape_htmltag(GETPOST("nom", "alpha")));
+    $prenom = remove_accents(dol_escape_htmltag(GETPOST("prenom", "alpha")));
+    $nompatronymique = remove_accents(dol_escape_htmltag(GETPOST("nompatronymique", "alpha")));
+    $Adresse = remove_accents(dol_escape_htmltag(GETPOST("Adresse", "alpha")));
+    $Adresse2 = remove_accents(dol_escape_htmltag(GETPOST("Adresse2", "alpha")));
+    $CP = remove_accents(dol_escape_htmltag(GETPOST("CP", "alpha")));
+    $ville = remove_accents(dol_escape_htmltag(GETPOST("ville", "alpha")));
+    $tel = remove_accents(dol_escape_htmltag(GETPOST("tel", "alpha")));
+    $tel2 = remove_accents(dol_escape_htmltag(GETPOST("tel2", "alpha")));
+    $portable = remove_accents(dol_escape_htmltag(GETPOST("portable", "alpha")));
     $Mail = dol_escape_htmltag(GETPOST("Mail", "email"));
-    $naissance = dol_escape_htmltag(GETPOST("naissance", "alpha"));
-    $CPnaissance = dol_escape_htmltag(GETPOST("CPnaissance", "alpha"));
-    $ddn = dol_escape_htmltag(GETPOST("ddn", "alpha"));
-    $annee = dol_escape_htmltag(GETPOST("annee", "alpha"));
-    $Actif = dol_escape_htmltag(GETPOST("Actif", "alpha"));
-    $Pupitre = dol_escape_htmltag(GETPOST("Pupitre", "alpha"));
-    $TailleVeste = dol_escape_htmltag(GETPOST("TailleVeste", "alpha"));
-    $TailleChemise = dol_escape_htmltag(GETPOST("TailleChemise", "alpha"));
-    $TaillePantalon = dol_escape_htmltag(GETPOST("TaillePantalon", "alpha"));
-    $TailleGilet = dol_escape_htmltag(GETPOST("TailleGilet", "alpha"));
-    $Casquette = dol_escape_htmltag(GETPOST("Casquette", "alpha"));
-    $Profession = dol_escape_htmltag(GETPOST("Profession", "alpha"));
-    $Musicien = dol_escape_htmltag(GETPOST("Musicien", "alpha"));
-    $Convocation_Papier = dol_escape_htmltag(GETPOST("Convocation_Papier", "alpha"));
-    $Convocation_Mail = dol_escape_htmltag(GETPOST("Convocation_Mail", "alpha"));
-    $Commentaires = dol_escape_htmltag(GETPOST("Commentaires", "alpha"));
-    $Clairon = dol_escape_htmltag(GETPOST("Clairon", "alpha"));
-    $Tambour = dol_escape_htmltag(GETPOST("Tambour", "alpha"));
-    $Mail_valide = dol_escape_htmltag(GETPOST("Mail_valide", "alpha"));
-    $medaille = dol_escape_htmltag(GETPOST("medaille", "alpha"));
-    $F1_envoi_taches = dol_escape_htmltag(GETPOST("F1_envoi_taches", "alpha"));
-    $fic = dol_escape_htmltag(GETPOST("fic", "alpha"));
+    $naissance = remove_accents(dol_escape_htmltag(GETPOST("naissance", "alpha")));
+    $CPnaissance = remove_accents(dol_escape_htmltag(GETPOST("CPnaissance", "alpha")));
+    $ddn = remove_accents(dol_escape_htmltag(GETPOST("ddn", "alpha")));
+    $annee = remove_accents(dol_escape_htmltag(GETPOST("annee", "alpha")));
+    $Actif = remove_accents(dol_escape_htmltag(GETPOST("Actif", "alpha")));
+    $Pupitre = remove_accents(dol_escape_htmltag(GETPOST("Pupitre", "alpha")));
+    $TailleVeste = remove_accents(dol_escape_htmltag(GETPOST("TailleVeste", "alpha")));
+    $TailleChemise = remove_accents(dol_escape_htmltag(GETPOST("TailleChemise", "alpha")));
+    $TaillePantalon = remove_accents(dol_escape_htmltag(GETPOST("TaillePantalon", "alpha")));
+    $TailleGilet = remove_accents(dol_escape_htmltag(GETPOST("TailleGilet", "alpha")));
+    $Casquette = remove_accents(dol_escape_htmltag(GETPOST("Casquette", "alpha")));
+    $Profession = remove_accents(dol_escape_htmltag(GETPOST("Profession", "alpha")));
+    $Musicien = remove_accents(dol_escape_htmltag(GETPOST("Musicien", "alpha")));
+    $Convocation_Papier = remove_accents(dol_escape_htmltag(GETPOST("Convocation_Papier", "alpha")));
+    $Convocation_Mail = remove_accents(dol_escape_htmltag(GETPOST("Convocation_Mail", "alpha")));
+    $Commentaires = remove_accents(dol_escape_htmltag(GETPOST("Commentaires", "alpha")));
+    $Clairon = remove_accents(dol_escape_htmltag(GETPOST("Clairon", "alpha")));
+    $Tambour = remove_accents(dol_escape_htmltag(GETPOST("Tambour", "alpha")));
+    $Mail_valide = remove_accents(dol_escape_htmltag(GETPOST("Mail_valide", "alpha")));
+    $medaille = remove_accents(dol_escape_htmltag(GETPOST("medaille", "alpha")));
+    $F1_envoi_taches = remove_accents(dol_escape_htmltag(GETPOST("F1_envoi_taches", "alpha")));
+    $fic = remove_accents(dol_escape_htmltag(GETPOST("fic", "alpha")));
     $rowid = dol_escape_htmltag(GETPOST("id", "int"));
 
 
@@ -61,6 +65,9 @@ function actions($perms){
         else if ($action == 'delete' && isset($perms->admin) && $perms->admin == 1) {
             deleteUser($rowid);
         }
+    }
+    else{
+        return [$name, []];
     }
     return [$name, $tab];
     }

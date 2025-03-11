@@ -33,7 +33,7 @@ function loaduser(){
 function make_show_tab(){
     $results = showUser();
     if (count($results) > 0) { // si au moins 1 membre
-        $show = '<table class="border" width="100%">';
+        $show = '<table id="dataTable" class="border" width="10" height="10">';
         $show .= '<tr class=liste_titre>
                 <th>Id</th>
                 <th>Sexe</th>

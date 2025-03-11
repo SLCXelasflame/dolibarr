@@ -1,0 +1,71 @@
+# Copyright (C) 2025 SuperAdmin
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+#
+# Generic
+#
+
+# Module label 'ModuleInstrumentName'
+ModuleInstrumentName = Instrument
+# Module description 'ModuleInstrumentDesc'
+ModuleInstrumentDesc = Instrument description
+
+#
+# Admin page
+#
+InstrumentSetup = Instrument setup
+Settings = Settings
+InstrumentSetupPage = Instrument setup page
+NewSection=New section
+INSTRUMENT_MYPARAM1 = My param 1
+INSTRUMENT_MYPARAM1Tooltip = My param 1 tooltip
+INSTRUMENT_MYPARAM2=My param 2
+INSTRUMENT_MYPARAM2Tooltip=My param 2 tooltip
+
+
+#
+# About page
+#
+About = About
+InstrumentAbout = About Instrument
+InstrumentAboutPage = Instrument about page
+
+#
+# Sample page
+#
+InstrumentArea = Home Instrument
+MyPageName = My page name
+
+#
+# Sample widget
+#
+MyWidget = My widget
+MyWidgetDescription = My widget description 
+
+# My vars
+Perso = Personnal
+N°membre = Member num
+N°Type_instrument = Type Instrument
+Membre = Member
+N°série = Serial num
+Marque = Brand
+Propriétaire = Owner
+Référence = Referencies
+Remarques = Comments
+CreateInstrument= Create Instrument
+EditInstrument= Edit Instrument
+DeleteInstrument = Delete Instrument
+ShowInstrument = Show Instrument
+HideInstrument = Hide Instrument
