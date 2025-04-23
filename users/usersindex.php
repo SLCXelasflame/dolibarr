@@ -85,7 +85,7 @@ print '<tr><td class="flat">'.$langs->trans("Fic").'</td><td><input type="text" 
 print '<input type="hidden" name="token" value="'.$token.'">';
 print '</table>';
 print '<div class="center">';
-print '<input type="submit" class="button" value="'.$langs->trans("CreateUser").'" style="display:none">';
+print '<input type="submit" class="button" id="createButton" value="'.$langs->trans("CreateUser").'" style="display:none">';
 print '</div>';
 print '</form>';
 }
@@ -140,7 +140,7 @@ if($perms !=null && isset($perms->bureau) && $perms->bureau == 1){
     print '<input type="hidden" name="token" value="'.$token.'">';
     print '</table>';
     print '<div class="center">';
-    print '<input type="submit" class="button" value="'.$langs->trans("EditUser").'" style="display:none">';
+    print '<input type="submit" class="button" id="editButton"  value="'.$langs->trans("EditUser").'" style="display:none">';
     print '</div>';
     print '</form>';
 }
@@ -160,7 +160,7 @@ if ($perms != null && isset($perms->admin) && $perms->admin == 1) {
     print '<input type="hidden" name="action" value="delete">';
     print '<input type="hidden" name="id" value="">';
     print '<div class="center">';
-    print '<input type="submit" class="button" value="'.$langs->trans("DeleteUser").'" style="display:none">';
+    print '<input type="submit" class="button" id="deleteButton"  value="'.$langs->trans("DeleteUser").'" style="display:none">';
     print '</div>';
     print '<input type="hidden" name="token" value="'.$token.'">';
     print '</form>';
