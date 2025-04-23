@@ -56,28 +56,30 @@ function getanneeMembres() {
 }
 
 function calculerAnnee($date_debut, $date_fin) {
-    // Si la date de fin est nulle, on prend aujourd'hui
+    // Si la date de fin est nulle, on prend aujourd'hui +1 an
     if ($date_fin == null) {
-        $date_fin = new DateTime(); // Aujourd'hui
+        $date_fin = (new DateTime())->modify('+1 year')->format('Y');
     } else {
-        $date_fin = DateTime::createFromFormat('d/m/Y', $date_fin);
+        $date_fin = DateTime::createFromFormat('d/m/Y', $date_fin)->format('Y');
     }
 
     // Si la date de début est nulle, on prend aujourd'hui
     if ($date_debut == null) {
-        $date_debut = new DateTime(); // Aujourd'hui
+        $date_debut = (new DateTime())->format('Y');
     } else {
-        $date_debut = DateTime::createFromFormat('d/m/Y', $date_debut);
+        $date_debut = DateTime::createFromFormat('d/m/Y', $date_debut)->format('Y');
     }
 
-    // Si le parsing a échoué
+    // Sécurité : on vérifie que les objets ont été bien créés
     if (!$date_debut || !$date_fin) {
-        return 0; // ou false, ou ce que tu veux comme fallback
+        return 0;
     }
 
-    $interval = $date_debut->diff($date_fin);
-    return $interval->y;
+    //$interval = $date_debut->diff($date_fin);
+    $interval = abs($date_debut - $date_fin);
+    return $interval; // Retourne le nombre d'années
 }
+
 
 function loadDureeMembres(){
     $membres = getanneeMembres();
@@ -127,21 +129,21 @@ function afficherMedailleMembre(){
                 $médaillé = true;
                 echo '<tr>';
                 echo '<td>'.$d["np"].'</td>';
-                echo '<td> '.$m["Nom"]. ' ' .$m["Métal"].' ' . $m["fédération"].  ' pour ' . $m["NA"] . ' ans </td>';
+                echo '<td> '.$m["Nom"]. ' ' .$m["Métal"].' ' . $m["fédération"].  ' pour ' . $d["1"]  . ' ans </td>';
                 echo '</tr></br>';
             }
             else if($m["Statut"] == 2 && $d["2"] == $m["NA"]){
                 $médaillé = true;
                 echo '<tr>';
                 echo '<td> '.$d["np"].'</td>';
-                echo '<td> '.$m["Nom"]. ' ' . $m["Métal"].' ' . $m["fédération"].' pour ' . $m["NA"] . ' ans </td>';
+                echo '<td> '.$m["Nom"]. ' ' . $m["Métal"].' ' . $m["fédération"].' pour ' . $d["2"]  . ' ans </td>';
                 echo '</tr></br>';
             }
             else if($m["Statut"] == 3 && $d["3"] == $m["NA"]){
                 $médaillé = true;
                 echo '<tr>';
                 echo '<td> '.$d["np"].'</td>';
-                echo '<td> '.$m["Nom"]  .' ' .$m["Métal"].' ' . $m["fédération"].' pour ' . $m["NA"] . ' ans </td>';
+                echo '<td> '.$m["Nom"]  .' ' .$m["Métal"].' ' . $m["fédération"].' pour ' . $d["3"]  . ' ans </td>';
                 echo '</tr></br>';
             }
         }

@@ -6,6 +6,6 @@ SELECT
 FROM statut_membre
 JOIN liste_membre 
   ON statut_membre.`N°membre` = liste_membre.id
-GROUP BY 
+ORDER BY 
   liste_membre.np, 
   statut_membre.`N°statuts`;

@@ -37,7 +37,7 @@ print load_fiche_titre($langs->trans("MedailleArea"), '', 'users.png@users');
 $token = newToken();
 
 afficherMedailleMembre();
-
+//print_r(loadDureeMembres());
 
 ?>
 
